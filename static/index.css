@@ -46,7 +46,7 @@ form {
   margin-bottom: 2rem;
 }
 
-form input[type="submit"] {
+form button {
   background-color: var(--primary-color);
   color: var(--white);
   border: none;
@@ -64,12 +64,7 @@ form input[type="submit"]:hover {
   background-color: var(--secondary-color);
 }
 
-.upload-area__drop-zoon form input[type="file"] {
-  color: transparent
-}
-
-/* Drop Zone Styles */
-.upload-area__drop-zoon {
+.upload-area {
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
@@ -80,9 +75,10 @@ form input[type="submit"]:hover {
   position: relative;
   background-color: var(--light-gray);
   cursor: pointer;
+  overflow: hidden;
 }
 
-.upload-area__drop-zoon:hover {
+.upload-area:hover {
   border-color: var(--primary-color);
 }
 
@@ -130,7 +126,7 @@ form input[type="submit"]:hover {
     font-size: 1rem;
   }
   
-  form, .upload-area__drop-zoon {
+  .upload-area__drop-zoon {
     padding: 1.5rem;
   }
 }

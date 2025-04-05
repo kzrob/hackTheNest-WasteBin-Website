@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Waste Bin Identifier</title>
-        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-        <link rel="stylesheet" href="/static/index.css">
-    </head>
 
-    <body>
-        <div class="title">
-            <h1>Waste Bin Identifier</h1>
-            <p>Upload an image to clasify waste for proper disposal.</p>
-        </div>
-        
-        
-        <div id="dropZoon" class="upload-area__drop-zoon drop-zoon">
-            <p>Drop your file here or click to browse files</p>
-            <form method='POST' enctype='multipart/form-data'>
-                {{form.hidden_tag()}}
-                {{form.file()}}
-                {{form.submit()}}
-            </form>
-            <!--input type="file" capture="environment" accept="image/*" name="images[]" multiple required-->
-        </div>
-        
-        <img src="{{image}}" alt="Preview Image" draggable="false">
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Bin Identifier</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <div class="title">
+        <h1>Waste Bin Identifier</h1>
+        <p>Upload an image to classify waste for proper disposal.</p>
+    </div>
+
+    <input type="button" class="upload-area" id="fileInput" value="Drop your file here or click to browse files">
+    
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input type="file" style="display:none;" id="file" name="file">
+        <button>Upload</button>
+    </form>
+
+    <img src="{{image}}" alt="Preview Image" draggable="false">
+
+    <script src="/static/index.js"></script>
+</body>
+
 </html>

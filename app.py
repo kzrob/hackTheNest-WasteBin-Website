@@ -1,29 +1,35 @@
 # Libraries
-from flask import Flask, render_template
-from flask_wtf import FlaskForm
-from wtforms import FileField, SubmitField
+from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
-from wtforms.validators import InputRequired
+from datetime import datetime
 import os
+
+ALLOWED_EXTENSIONS = set(["png", "jpg", "jpeg", "heif", "heic", "webp"])
+
+def get_file_extension(filename):
+    if '.' in filename:
+        return filename.rsplit('.', 1)[1].lower()
+    return "none"
 
 # App
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'supersecretkey'
-app.config['UPLOAD_FOLDER'] = 'static/files'
+app.config["UPLOAD_FOLDER"] = "static/files"
 
-class UploadFileForm(FlaskForm):
-    file = FileField("File", validators=[InputRequired()])
-    submit = SubmitField("Upload File")
-
-@app.route('/', methods=['GET',"POST"])
-@app.route('/home', methods=['GET',"POST"])
+@app.route("/", methods=["GET","POST"])
+@app.route("/home", methods=["GET","POST"])
 def home():
-    form = UploadFileForm()
-    if form.validate_on_submit():
-        file = form.file.data # First grab the file
-        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) # Then save the file
-        return "uploaded successfully"
-    return render_template('index.html', form=form)
+    if request.method == "POST":
+        file = request.files["file"]
+        extension = get_file_extension(file.filename)
+        if file and extension in ALLOWED_EXTENSIONS:
+            filename = f"{secure_filename(file.filename).split('.')[0]}_{str(datetime.now())}.{extension}"
+            save_location = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+            file.save(save_location)
+            return render_template("index.html", image=app.config["UPLOAD_FOLDER"] + "/" + filename)
 
-if __name__ == '__main__':
+        return "Failed to upload file: (" + file.filename + ")"
+    
+    return render_template("index.html")
+
+if __name__ == "__main__":
     app.run(debug=True)
