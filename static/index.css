@@ -1,59 +1,136 @@
+/* General Styles */
 :root {
-    --black: #1F2937;
-    --white: #F9FAF8;
-    --light: #E5E7EB;
-    --blue: #3882F6;
+  --primary-color: #4CAF50;
+  --secondary-color: #45a049;
+  --text-color: #333;
+  --light-gray: #f1f1f1;
+  --medium-gray: #ddd;
+  --dark-gray: #777;
+  --white: #fff;
+  --error-color: #f44336;
 }
-
-/*
-* {
-    border: 1px solid red
-}
-*/
 
 body {
-    font-size: 18px;
-    max-width: 100vw;
-    margin: 0;
-    font-family: Roboto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: var(--text-color);
+  line-height: 1.6;
 }
 
+/* Title Section */
 .title {
-    text-align: center;
-    font-size: 36px;
-    
-    & h1 {
-        margin-bottom: 0;
-        font-weight: 900;
-    }
-
-    & p {
-        margin-top: 0;
-    }
+  text-align: center;
+  padding: 2rem 0;
 }
 
-.container {
-    display: grid;
-    gap: 4rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 25%), 1fr));
+.title h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
 
-    width: 80%;
-    margin: 0 auto;
+.title p {
+  margin: 0.5rem 0 0;
+  font-size: 1.1rem;
+  color: var(--dark-gray);
+}
 
-    & a {
-        text-decoration: none;
-        color: inherit;
-    }
+/* Form Styles */
+form {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
 
-    & .card {
-        aspect-ratio: 3/2;
-        text-align: center;
-        border: 4px solid var(--black);
-        border-radius: 16px;
-    }
+form input[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s;
+  display: block;
+  width: 100%;
+}
 
-    & .card:hover {
-        transition: all 0.5s ease;
-        transform: scale(1.10);
-    }
+form input[type="submit"]:hover {
+  background-color: var(--secondary-color);
+}
+
+.upload-area__drop-zoon form input[type="file"] {
+  color: transparent
+}
+
+/* Drop Zone Styles */
+.upload-area__drop-zoon {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 2px dashed var(--medium-gray);
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  background-color: var(--light-gray);
+  cursor: pointer;
+}
+
+.upload-area__drop-zoon:hover {
+  border-color: var(--primary-color);
+}
+
+.drop-zoon__icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.drop-zoon__paragraph {
+  color: var(--dark-gray);
+  margin: 0 0 1rem;
+}
+
+.drop-zoon__loading-text {
+  display: none;
+  color: var(--primary-color);
+}
+
+.drop-zoon__preview-image {
+  max-width: 100%;
+  max-height: 200px;
+  display: none;
+  margin-top: 1rem;
+  border-radius: 4px;
+}
+
+.drop-zoon--over {
+  border-color: var(--primary-color);
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+.drop-zoon--error {
+  border-color: var(--error-color);
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+@media (max-width: 768px) {
+  .title h1 {
+    font-size: 2rem;
+  }
+  
+  .title p {
+    font-size: 1rem;
+  }
+  
+  form, .upload-area__drop-zoon {
+    padding: 1.5rem;
+  }
 }

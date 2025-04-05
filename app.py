@@ -1,45 +1,29 @@
 # Libraries
-from flask import Flask, request, render_template
+from flask import Flask, render_template
+from flask_wtf import FlaskForm
+from wtforms import FileField, SubmitField
 from werkzeug.utils import secure_filename
-from datetime import datetime
+from wtforms.validators import InputRequired
 import os
-import json
 
-# Modules
-import parseBrowserHistory as parse
-
+# App
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'supersecretkey'
+app.config['UPLOAD_FOLDER'] = 'static/files'
 
-@app.route("/")
-@app.route("/home")
+class UploadFileForm(FlaskForm):
+    file = FileField("File", validators=[InputRequired()])
+    submit = SubmitField("Upload File")
+
+@app.route('/', methods=['GET',"POST"])
+@app.route('/home', methods=['GET',"POST"])
 def home():
-	with open("articles.json", "r") as file:
-		data = json.load(file)
-	return render_template("index.html", articles=data)
+    form = UploadFileForm()
+    if form.validate_on_submit():
+        file = form.file.data # First grab the file
+        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) # Then save the file
+        return "uploaded successfully"
+    return render_template('index.html', form=form)
 
-@app.route("/calculator")
-def calculator():
-	return render_template("calculator.html")
-
-@app.route("/sketchpad")
-def sketchpad():
-	return render_template("sketchpad.html")
-
-@app.route("/upload", methods=["GET", "POST"])
-def upload():
-	if request.method == "POST":
-		file = request.files["file"]
-		if file and parse.allowed_file(file.filename):
-			filename = secure_filename(file.filename)
-			new_filename = f"{filename.split('.')[0]}_{str(datetime.now())}.csv"
-			save_location = os.path.join("inputFiles", new_filename)
-			file.save(save_location)
-
-			output = parse.parseCSV(save_location)
-			return output
-
-		return "uploaded"
-	return render_template("upload.html")
-
-if __name__ == "__main__":
-	app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -11,9 +11,20 @@
     <body>
         <div class="title">
             <h1>Waste Bin Identifier</h1>
+            <p>Upload an image to clasify waste for proper disposal.</p>
         </div>
-
-        <div class="container">
+        
+        
+        <div id="dropZoon" class="upload-area__drop-zoon drop-zoon">
+            <p>Drop your file here or click to browse files</p>
+            <form method='POST' enctype='multipart/form-data'>
+                {{form.hidden_tag()}}
+                {{form.file()}}
+                {{form.submit()}}
+            </form>
+            <!--input type="file" capture="environment" accept="image/*" name="images[]" multiple required-->
         </div>
+        
+        <img src="{{image}}" alt="Preview Image" draggable="false">
     </body>
 </html>
