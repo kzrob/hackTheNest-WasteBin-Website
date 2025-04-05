@@ -60,61 +60,29 @@ form button {
   width: 100%;
 }
 
-form input[type="submit"]:hover {
+form button:hover {
   background-color: var(--secondary-color);
 }
 
 .upload-area {
-  max-width: 600px;
-  margin: 0 auto;
+  width: 80%; 
+  max-width: 800px; 
+  margin: 2rem auto; 
   padding: 2rem;
   border: 2px dashed var(--medium-gray);
   border-radius: 8px;
   text-align: center;
   transition: all 0.3s ease;
-  position: relative;
   background-color: var(--light-gray);
   cursor: pointer;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
 }
 
 .upload-area:hover {
   border-color: var(--primary-color);
-}
-
-.drop-zoon__icon {
-  font-size: 3rem;
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.drop-zoon__paragraph {
-  color: var(--dark-gray);
-  margin: 0 0 1rem;
-}
-
-.drop-zoon__loading-text {
-  display: none;
-  color: var(--primary-color);
-}
-
-.drop-zoon__preview-image {
-  max-width: 100%;
-  max-height: 200px;
-  display: none;
-  margin-top: 1rem;
-  border-radius: 4px;
-}
-
-.drop-zoon--over {
-  border-color: var(--primary-color);
-  background-color: rgba(76, 175, 80, 0.1);
-}
-
-.drop-zoon--error {
-  border-color: var(--error-color);
-  background-color: rgba(244, 67, 54, 0.1);
 }
 
 @media (max-width: 768px) {

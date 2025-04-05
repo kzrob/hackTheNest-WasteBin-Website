@@ -17,12 +17,11 @@
 
     <input type="button" class="upload-area" id="fileInput" value="Drop your file here or click to browse files">
     
-    <form action="/" method="POST" enctype="multipart/form-data">
-        <input type="file" style="display:none;" id="file" name="file">
-        <button>Upload</button>
-    </form>
-
     <img src="{{image}}" alt="Preview Image" draggable="false">
+
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input type="file" style="display:none;" id="file" name="file" onchange="this.form.submit();">
+    </form>
 
     <script src="/static/index.js"></script>
 </body>
