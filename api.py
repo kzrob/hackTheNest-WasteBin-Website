@@ -29,6 +29,7 @@ bin_labels = [
     "Trash",
     "Recycling",
     "Compost",
+    "E-Waste disposal",
     "Check local disposal regulations (batteries/glass)"
 ]
 

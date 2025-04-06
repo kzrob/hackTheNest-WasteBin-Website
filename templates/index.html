@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=5.0, user-scalable=yes">
     <title>Waste Bin Identifier</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/images/hackthenest.png">
     <link rel="stylesheet" href="/static/index.css">
 </head>
 
 <body>
     <header class="main-header">
         <div class="header-content">
-            <img src="/static/hackthenest.png" alt="HackTheNest Logo" class="logo">
+            <img src="/static/images/hackthenest.png" alt="HackTheNest Logo" class="logo">
             <h1 class="header-title">WhichBin</h1>
         </div>
     </header>
@@ -22,14 +22,12 @@
         <h1>Identify your waste</h1>
         <p>Upload an image to classify waste for proper disposal.</p>
     </div>
-
    
-
     <input type="button" class="upload-area" id="fileInput" value="Drop your file here or click to browse files">
     
     <div class="result">
         <h1>WhichBin?: {{result}}</h1>
-        <p>Confidence: {{confidence}}</p>
+        <!--p>Confidence: {{confidence}}</p-->
         <img src="{{image}}" alt="Preview Image" draggable="false">
     </div>
 
@@ -38,7 +36,7 @@
     </form>
 
     <div class="stats-box">
-        <p>Trash Collected: <span class="counter-number">0</span></p>
+        <p>Garbage Collected: <span class="counter-number">0</span></p>
         <p><span class="rank-title">{{rank}}</span></p>
     </div>
 
@@ -46,7 +44,7 @@
         <thead>
             <tr>
                 <th>Rank</th>
-                <th>Trash Collected</th>
+                <th>Garbage collected</th>
             </tr>
         </thead>
         <tbody>
