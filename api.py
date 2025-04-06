@@ -39,7 +39,6 @@ transform = transforms.Compose([
 
 # Your dataset's class labels (ensure this matches the classes used during training)
 dataset_classes = ["battery", "biological", "cardboard", "clothes", "glass", "metal", "paper", "plastic", "shoes", "trash"]
-
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
     # Read the uploaded image

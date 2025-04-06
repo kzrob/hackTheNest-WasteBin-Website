@@ -88,3 +88,75 @@ body {
 form {
   display: none;
 }
+
+.ranking {
+  margin-top: 20px;
+  text-align: center;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.stats-box {
+  margin-top: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  color: #333;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.rank-table {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 500px;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.rank-table th, .rank-table td {
+  padding: 12px 20px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.rank-table th {
+  background: #4ecdc4;
+  color: white;
+  font-weight: bold;
+}
+
+.rank-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.rank-table tr:hover {
+  background: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+  .title h1 {
+    font-size: 2em;
+  }
+
+  .upload-area {
+    height: 150px;
+    font-size: 1em;
+  }
+
+  .result h1 {
+    font-size: 1.5em;
+  }
+
+  .ranking {
+    font-size: 1em;
+  }
+}

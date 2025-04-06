@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=5.0, user-scalable=yes">
     <title>Waste Bin Identifier</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/static/index.css">
@@ -12,26 +12,68 @@
 <body>
     {% include "header.html" %}
 
-    <!--div class="upload-counter">
-        <span class="counter-number">0</span>
-        Files Uploaded
-    </div-->
-
     <div class="title">
         <h1>Identify your waste</h1>
         <p>Upload an image to classify waste for proper disposal.</p>
     </div>
 
+   
+
     <input type="button" class="upload-area" id="fileInput" value="Drop your file here or click to browse files">
     
     <div class="result">
         <h1>This is {{result}}</h1>
+        <p>Recommended disposal: {{bin_sorting}}</p>
         <img src="{{image}}" alt="Preview Image" draggable="false">
     </div>
 
-    <form action="/" method="POST" enctype="multipart/form-data">
+    <form action="/" method="POST" enctype="multipart/form-data" id="uploadForm">
         <input type="file" style="display:none;" id="file" name="file" onchange="handleFileUpload(this)">
     </form>
+
+    <div class="stats-box">
+        <p>Trash Collected: <span class="counter-number">0</span></p>
+        <p><span class="rank-title">{{rank}}</span></p>
+    </div>
+
+    <table class="rank-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Trash Collected</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Unranked</td>
+                <td>0 - 49</td>
+            </tr>
+            <tr>
+                <td>Bronze</td>
+                <td>50 - 199</td>
+            </tr>
+            <tr>
+                <td>Silver</td>
+                <td>200 - 499</td>
+            </tr>
+            <tr>
+                <td>Platinum</td>
+                <td>500 - 999</td>
+            </tr>
+            <tr>
+                <td>Diamond</td>
+                <td>1000 - 1999</td>
+            </tr>
+            <tr>
+                <td>Trash Titan</td>
+                <td>2000 - 2999</td>
+            </tr>
+            <tr>
+                <td>Waste Warden</td>
+                <td>3000+</td>
+            </tr>
+        </tbody>
+    </table>
 
     <script src="/static/index.js"></script>
 </body>
