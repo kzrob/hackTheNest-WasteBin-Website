@@ -3,27 +3,36 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Waste Bin Identifier</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/static/index.css">
 </head>
 
 <body>
+    {% include "header.html" %}
+
+    <!--div class="upload-counter">
+        <span class="counter-number">0</span>
+        Files Uploaded
+    </div-->
+
     <div class="title">
-        <h1>Waste Bin Identifier</h1>
+        <h1>Identify your waste</h1>
         <p>Upload an image to classify waste for proper disposal.</p>
     </div>
 
     <input type="button" class="upload-area" id="fileInput" value="Drop your file here or click to browse files">
     
-    <img src="{{image}}" alt="Preview Image" draggable="false">
+    <div class="result">
+        <h1>This is {{result}}</h1>
+        <img src="{{image}}" alt="Preview Image" draggable="false">
+    </div>
 
     <form action="/" method="POST" enctype="multipart/form-data">
-        <input type="file" style="display:none;" id="file" name="file" onchange="this.form.submit();">
+        <input type="file" style="display:none;" id="file" name="file" onchange="handleFileUpload(this)">
     </form>
 
     <script src="/static/index.js"></script>
 </body>
-
 </html>

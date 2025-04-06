@@ -1,6 +1,7 @@
 # Libraries
 from flask import Flask, request, render_template
 from datetime import datetime
+import json
 import os
 import requests
 
@@ -10,7 +11,7 @@ app.config["UPLOAD_FOLDER"] = "static/files"
 
 # Constants
 ALLOWED_EXTENSIONS = set(["png", "jpg", "jpeg", "heif", "heic", "webp"])
-API = "https://api-4j61.onrender.com/predict"
+API = "http://127.0.0.1:8000/predict/"
 
 # Functions
 def get_file_extension(filename):
@@ -21,16 +22,25 @@ def get_file_extension(filename):
 def requestAPI(file_path):
 	with open(file_path, 'rb') as image_file:
 		response = requests.post(API, files={'file': image_file})
-		print()
-		print(response.content)
-		print()
-		print(response.json)
-		print()
-		print(response.status_code)
-		print()
 		if response.status_code == 200:
 			return response.json()["prediction"]
 		return "<h1>API request error</h1> Status code " + str(response.status_code)
+
+def edit_json_file(file_path, key, value):
+	try:
+		with open(file_path, 'r') as file:
+			data = json.load(file)
+	except FileNotFoundError:
+		print(f"Error: File not found: {file_path}")
+		return
+	except json.JSONDecodeError:
+		print(f"Error: Invalid JSON format in: {file_path}")
+		return
+	
+	data[key] = value
+
+	with open(file_path, 'w') as file:
+		json.dump(data, file, indent=4)
 
 # Routing
 @app.route("/", methods=["GET","POST"])
@@ -42,13 +52,14 @@ def home():
 			filename = str(datetime.now()) + '.' + extension
 			save_location = os.path.join(app.config["UPLOAD_FOLDER"], filename)
 			file.save(save_location)
-			result = requestAPI(save_location)
-			return result
-			# return render_template("index.html", image=app.config["UPLOAD_FOLDER"] + "/" + filename)
-
+			result = "a " + requestAPI(save_location)
+			return render_template("index.html", image=app.config["UPLOAD_FOLDER"] + "/" + filename, result=result)
 		return "Failed to upload file: (" + file.filename + ")"
-	
 	return render_template("index.html")
+
+@app.route("/about")
+def about():
+	return render_template("about.html")
 
 # Run
 if __name__ == "__main__":

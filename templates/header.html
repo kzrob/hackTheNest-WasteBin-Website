@@ -1,0 +1,107 @@
+<header class="main-header">
+    <nav class="header-nav">
+        <a href="/" class="nav-btn">Home</a>
+        <a href="/about" class="nav-btn">About</a>
+    </nav>
+    
+    <a href="/" class="header-title">Waste Bin Identifier</a>
+    
+    <div class="upload-counter">
+        <span class="counter-number">0</span>
+        <span class="counter-text">Files Uploaded</span>
+    </div>
+</header>
+
+<style>
+    /* Header Styles */
+    .main-header {
+		height: 80px; /* Fixed header height */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .header-nav {
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav-btn {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .header-title {
+        color: white;
+		font-weight: bold;
+        text-decoration: none;
+        font-size: 1.8em;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+    }
+
+    .header-title:hover {
+        text-decoration: underline;
+    }
+
+    /* Original Counter Style */
+    .upload-counter {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 12px 30px; /* Increased horizontal padding */
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        color: #666;
+        font-size: 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 15px; /* Space between number and text */
+        min-width: 180px; /* Minimum width */
+    }
+
+    .counter-number {
+        font-size: 28px; /* Slightly larger number */
+        font-weight: bold;
+        color: #4ecdc4;
+        line-height: 1;
+    }
+
+    .counter-text {
+        font-size: 14px; /* Larger text */
+        white-space: nowrap;
+    }
+
+    /* Ensure content starts below header */
+    body {
+        padding-top: 120px !important; /* Increased padding */
+        min-height: calc(100vh - 100px); /* Full viewport height minus header */
+    }
+</style>
+
+<script>
+    // Consistent Counter Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        const count = localStorage.getItem('uploadCount') || 0;
+        document.querySelectorAll('.counter-number').forEach(element => {
+            element.textContent = count;
+        });
+    });
+</script>
