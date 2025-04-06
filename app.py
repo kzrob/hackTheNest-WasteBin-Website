@@ -23,8 +23,9 @@ def requestAPI(file_path):
 	with open(file_path, 'rb') as image_file:
 		response = requests.post(API, files={'file': image_file})
 		if response.status_code == 200:
-			return response.json()["prediction"]
-		return "<h1>API request error</h1> Status code " + str(response.status_code)
+			response_data = response.json()
+			return response_data["prediction"], response_data["confidence"]
+		return "<h1>API request error</h1> Status code " + str(response.status_code), None
 
 def edit_json_file(file_path, key, value):
 	try:
@@ -82,13 +83,14 @@ def home():
                 filename = datetime.now().strftime("%Y%m%d%H%M%S") + '.' + extension
                 save_location = os.path.join(app.config["UPLOAD_FOLDER"], filename)
                 file.save(save_location)
-                prediction = requestAPI(save_location)
+                prediction, confidence = requestAPI(save_location)
                 bin_sorting = get_bin_sorting(prediction)
                 upload_count += 1
                 response = render_template(
                     "index.html",
                     image=f"/{app.config['UPLOAD_FOLDER']}/{filename}",
                     result=prediction,
+                    confidence=confidence,
                     bin_sorting=bin_sorting,
                     rank=get_rank(upload_count)
                 )

@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 html, body {
@@ -13,7 +13,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: linear-gradient(45deg, #ff7777, #52d3c4);
   padding: 40px 20px;
 }
 
@@ -21,7 +21,7 @@ body {
   text-align: center;
   margin-bottom: 40px;
   color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .title h1 {
@@ -38,9 +38,9 @@ body {
   width: 100%;
   max-width: 500px;
   height: 200px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 3px dashed #eee;
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px dashed #ccc;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +55,7 @@ body {
 
 .upload-area:hover {
   transform: translateY(-3px);
-  border-color: #4ecdc4;
+  border-color: #52d3c4;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -65,22 +65,21 @@ body {
   color: white;
   background: rgba(255, 255, 255, 0.9);
   padding: 20px;
-  border-radius: 16px;
+  border-radius: 8px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
 }
 
-.result h1 {
+.result h1, .result p {
   color: #333;
   margin-bottom: 16px;
-  font-size: 1.8em;
 }
 
 .result img {
   max-width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   margin-top: 16px;
 }
@@ -92,7 +91,7 @@ form {
 .ranking {
   margin-top: 20px;
   text-align: center;
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 1.2em;
   font-weight: bold;
 }
@@ -102,7 +101,7 @@ form {
   text-align: center;
   background: rgba(255, 255, 255, 0.9);
   padding: 20px;
-  border-radius: 16px;
+  border-radius: 8px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
@@ -117,29 +116,62 @@ form {
   max-width: 500px;
   border-collapse: collapse;
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Added margin-bottom for spacing */
+  color:black;
 }
 
 .rank-table th, .rank-table td {
   padding: 12px 20px;
   text-align: center;
-  border: 1px solid #ddd;
+  border: none; /* Removed border for cleaner look */
 }
 
 .rank-table th {
-  background: #4ecdc4;
-  color: white;
-  font-weight: bold;
+  background: #52d3c44b; /* Updated background color */
+  color: rgb(0, 0, 0);
+  font-weight: 600; /* Slightly lighter font-weight */
+  text-transform: uppercase; /* Uppercase for better visual hierarchy */
 }
 
 .rank-table tr:nth-child(even) {
-  background: #f9f9f9;
+  background: #f2f2f2; /* Softer background color for even rows */
 }
 
 .rank-table tr:hover {
-  background: #f1f1f1;
+  background: #e0e0e0; /* Slightly darker background on hover */
+}
+
+.main-header {
+  background-color: rgba(66, 59, 59, 0.532);
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.header-title {
+  font-size: 1.8em;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Optional: adjust spacing between icon and text */
 }
 
 @media (max-width: 768px) {

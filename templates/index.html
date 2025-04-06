@@ -10,6 +10,12 @@
 </head>
 
 <body>
+    <header class="main-header">
+        <div class="header-content">
+            <img src="/static/hackthenest.png" alt="HackTheNest Logo" class="logo">
+            <h1 class="header-title">WhichBin</h1>
+        </div>
+    </header>
     {% include "header.html" %}
 
     <div class="title">
@@ -22,8 +28,8 @@
     <input type="button" class="upload-area" id="fileInput" value="Drop your file here or click to browse files">
     
     <div class="result">
-        <h1>This is {{result}}</h1>
-        <p>Recommended disposal: {{bin_sorting}}</p>
+        <h1>WhichBin?: {{result}}</h1>
+        <p>Confidence: {{confidence}}</p>
         <img src="{{image}}" alt="Preview Image" draggable="false">
     </div>
 
